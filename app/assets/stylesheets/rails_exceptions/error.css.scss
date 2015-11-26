@@ -1,0 +1,48 @@
+$body_bg_color: #f1f1f1;
+$bg_menu_color: #ccc;
+$border_menu: 1px solid gray;
+$text_shadow: 1px 1px gray;
+$bg_text_color: #555;
+$body_font: 12px arial,sans-serif;//Helvetica, Arial, 'Droid Sans', Verdana, sans-serif;
+$system_text: #555;
+$a_color: #438bc5;
+$bg_first_color: #555;
+$bg_border: 1px solid $bg_first_color;
+$shadow:  0 0 15px gray;
+
+@mixin border_shadow(){
+  -moz-box-shadow: $shadow;
+  -ms-box-shadow: $shadow;
+  -webkit-box-shadow:$shadow;
+  box-shadow: $shadow;
+}
+
+body{font: $body_font;background: $body_bg_color;color: $bg_text_color;margin: 0px;line-height: 20px;}
+.div_body {text-align: center;}
+.system_title{text-align: left;font: italic 3em bold;color: $system_text;}
+.div_title {background: $bg_menu_color;min-height: 50px;text-align: right;padding: 10px 25px;margin-bottom: 0px;
+  color: $bg_text_color;text-shadow: $text_shadow;
+  border: none;border-bottom: $border_menu;
+
+  -moz-box-shadow: 0 0 15px gray;
+  -ms-box-shadow: 0 0 15px gray;
+  -webkit-box-shadow: 0 0 15px gray;
+  box-shadow: 0 0 15px gray;
+  position: relative;
+  z-index: 100;
+}
+
+
+.footer{
+  background: $bg_menu_color;height: 15px;padding: 5px 25px 15px 25px ;
+  color: $system_text;font-size: 0.8em;border: none;border-top: $bg_border;
+
+  position: relative;
+  bottom: -1px;
+  margin-bottom: 0px;
+  z-index: 100;
+  @include border_shadow();
+  .footer_title{float: left;}
+  .footer_date{float: right;}
+
+}

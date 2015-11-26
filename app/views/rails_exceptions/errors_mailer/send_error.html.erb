@@ -1,0 +1,3 @@
+<% poryadok = %w(error.user error.url error.request_ip error.html_method error.class_name error.error_message error.time error.backtrace) %>
+<h2 style="text-align: center;"><%= t 'application_title' %>:&nbsp;&nbsp;&nbsp;<%= t 'exceptions.title' %></h2>
+<table> <% poryadok.each do |exp_key| %><tr><td style='font-weight: bold;'><%= t exp_key %></td><td><pre><%= @exp_hash[exp_key] %></pre></td></tr><% end %></table>

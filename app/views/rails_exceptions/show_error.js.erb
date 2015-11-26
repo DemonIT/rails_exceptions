@@ -1,0 +1,12 @@
+var messageText = '<%= @error_message %>';
+var divModalWindow = $('#modalWindow');
+if (divModalWindow != undefined && divModalWindow != []){
+    if(divModalWindow.css('display') == 'block') alert(messageText);
+    else
+    {
+        $('#modal_window_data').html('<%=j render 'message_partials/message_ok' %>');
+        $('#modalWindow').find('.modal_message_text').html(messageText);
+        modalWindowShow();
+        $('#buttonWindowHide').focus()
+    }
+} else alert(messageText);

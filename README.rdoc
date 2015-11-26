@@ -1,0 +1,6 @@
+= RailsExceptions
+
+Обработка исключений в приложении RubyOnRails
+
+
+This project rocks and uses MIT-LICENSE.
