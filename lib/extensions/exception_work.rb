@@ -92,6 +92,9 @@ ActionController::Base.class_eval do
   def working_unknown_exception(exp)
     if env_development?
       @error_message = exp.message
+      if request.xhr?
+        puts_error_message(exp)
+      end
       respond_to do |format|
         format.html{raise exp}
         format.js{render(:partial => 'rails_exceptions/show_error', :handlers => [:erb], :formats => [:js])}
