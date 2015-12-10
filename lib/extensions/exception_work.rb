@@ -5,6 +5,10 @@ ActionController::Base.class_eval do
 
   rescue_from Exception, :with => :exception_work, :except => [:save_exception_info]
 
+  def select_layout
+    'application'
+  end
+
   private
 
   def cnt_path_to_module_name(cnt_path)
@@ -116,7 +120,7 @@ ActionController::Base.class_eval do
 
   def save_exception_info(exp, controller_class_name = 'RailsExceptions')
     unless env_development?
-      user_id = session[:user_id] || session[:user] ? session[:user][:id] : ''
+      user_id = session[:user_id] || (session[:user] ? session[:user][:id] : '')
 
 
       if RailsExceptions.save_exception_info
