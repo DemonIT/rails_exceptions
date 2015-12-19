@@ -63,6 +63,9 @@ ActionController::Base.class_eval do
       show_error(t 'exceptions.record_invalid')
     elsif exp.class == PG::Error && exp.message.start_with?('ERROR:  duplicate key value violates unique constraint')
       show_error(t 'error.pg_errors.duplicate')
+    elsif exp.class == ActiveRecord::RecordNotFound
+      puts_error_message exp
+      show_error(t 'exceptions.object_is_null')
     elsif exp.class == ActionView::MissingTemplate
       if env_development?
         show_error("#{t 'exceptions.template_find_empty'} [#{exp.message}]")
