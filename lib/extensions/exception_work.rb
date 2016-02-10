@@ -53,8 +53,12 @@ ActionController::Base.class_eval do
           if exp.message.start_with?('ShowMessage: ')
             show_error exp.message.sub('ShowMessage: ', '')
           elsif exp.message.start_with?('NotAccessModule') || exp.message.start_with?('NotAccessAction')
-            right_name =  exp.message.sub('NotAccessModule: ', '').sub('NotAccessAction: ', '')
-            show_error "#{t('exceptions.modul_is_not_access')} [ #{right_name} ]"
+            if env_development?
+              right_name =  exp.message.sub('NotAccessModule: ', '').sub('NotAccessAction: ', '')
+              show_error "#{t('exceptions.modul_is_not_access')} [ #{right_name} ]"
+            else
+              show_error t('exceptions.modul_is_not_access')
+            end
           else
             working_other_exception(exp)
           end
