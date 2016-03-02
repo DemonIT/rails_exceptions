@@ -147,7 +147,7 @@ ActionController::Base.class_eval do
             @log_error.error_message = exp.message
             @log_error.error_backtrace = exp.backtrace.join("\n")
             @log_error.request_params = request.params.to_s
-            # @log_error.save!
+            @log_error.save!
           end
         end
       end
