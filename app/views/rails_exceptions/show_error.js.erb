@@ -1,6 +1,6 @@
-var messageText = '<%= @error_message %>';
+var messageText = '<%= j @error_message %>';
 var divModalWindow = $('#modalWindow');
-if (divModalWindow != undefined && divModalWindow != []){
+if (divModalWindow.size() > 0){
     if(divModalWindow.css('display') == 'block') alert(messageText);
     else
     {

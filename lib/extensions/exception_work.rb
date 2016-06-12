@@ -70,7 +70,7 @@ ActionController::Base.class_eval do
     elsif exp.class == ActiveRecord::RecordNotFound
       puts_error_message exp
       show_error(t 'exceptions.object_is_null')
-    elsif exp.class == ActionView::MissingTemplate
+    elsif exp.class == ActionView::MissingTemplate || exp.class.to_s == 'ActionView::Template::Error'
       if env_development?
         show_error("#{t 'exceptions.template_find_empty'} [#{exp.message}]")
       else
@@ -174,11 +174,12 @@ ActionController::Base.class_eval do
 
 
   def puts_error_message(exp)
-    puts '#------------------#'
-    puts 'Message: ' + exp.message
-    puts 'Trace: '
-    puts exp.backtrace.join("\n")
-    puts '#------------------#'
+    logger.error '#------------------#'
+    logger.error  'Error: ' + exp.class.to_s
+    logger.error  'Message: ' + exp.message
+    logger.error  'Trace: '
+    logger.error  exp.backtrace.first(5).join("\n")
+    logger.error  '#------------------#'
   end
 
   def env_development?
