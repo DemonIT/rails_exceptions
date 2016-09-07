@@ -3,7 +3,7 @@ require 'action_controller'
 ActionController::Base.class_eval do
   require 'extensions/project_exception'
 
-  rescue_from Exception, :with => :exception_work, :except => [:save_exception_info]
+  rescue_from Exception, :with => :exception_work #, :except => [:save_exception_info]
 
   def select_layout
     'application'
